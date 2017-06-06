@@ -1,0 +1,13 @@
+{% include 'index/header.html'%}
+
+<form action="/load_coupon/add/" method="post">
+	{% csrf_token %}
+	{% for choice in coupon_list %}
+	<input type="radio" name="choice" value = "{{choice}}"/>
+	<label for="choice{{ forloop.counter }}">{{ choice }}</label><br />
+	{% endfor %}
+	<input type="text" name="comment"/>
+	<input type="submit" value="Submit" />
+</form>
+
+{% include 'index/footer.html'%}

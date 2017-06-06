@@ -1,0 +1,21 @@
+{% include 'index/header.html' %}
+
+追蹤:{{ user.target.count }}
+粉絲:{{ user.follower.count}}
+
+<h3>用戶名稱: {{ user.username }}</h3>
+{% if user.email %}<p>email: {{user.email }}</p>{% endif %}
+<p>最後登入: {{ user.last_login }}</p>
+<p>註冊時間: {{ user.date_joined }}</p>
+<h3>麥當勞報報</h3>
+
+{% for coupon in user_coupon %}
+<p>>>>>{{coupon.pub_date}}</p>
+{% if coupon.comment %}
+<p><b>心情：{{coupon.comment}}</b></p>	
+	{% endif %}
+	<img src="https://raw.githubusercontent.com/luuuy/ntustWeb/master/{{coupon.food}}.jpg" style="width: 300px">
+	
+{% endfor %}
+
+{% include 'index/footer.html' %}

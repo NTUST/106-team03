@@ -1,0 +1,21 @@
+{% if request.user.is_authenticated %}
+
+{{request.user}}
+
+you follows :
+
+{% for target in request.user.target.all %}
+{{target.target}}
+{% endfor %}
+
+{{target.follower.username}}
+
+
+{% for coupon in coupons %}
+<p>{{coupon.food}}<p>
+<p>{{coupon.pub_date}}</p>
+{% endfor %}
+
+{% else %}
+<p> 您尚未登入 </p>
+{% endif %}
