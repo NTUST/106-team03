@@ -1,10 +1,21 @@
 {% include 'index/header.html' %}
-        <p><a href="/accounts/register/">註冊</a></p>
         {% if request.user.is_authenticated %}
-            <p>
-                {{request.user}} 您已經登入囉~
-                <a href="/accounts/logout/">登出</a>
-            </p>
+
+{% for target in request.user.target.all%}
+<div class="panel panel-warning">
+  <div class="panel-heading"> <h4> <a href="/user/{{target.target.username}}"> {{target.target.username}}</a> </h4></div>
+  <div class="panel-body">
+    {% for coupon in target.target.coupon.all %}
+    <div class="col-md-3 col-xs-12"><a href="/user/{{target.target.username}}"><img src="/static/images/{{coupon.food}}.jpg" class="img-thumbnail food"></a></div>
+    {% empty %}
+    <p><strong>是個不擅長抽獎的朋友呢<strong></p>
+    {% endfor %}
+    </div>
+    </div>
+
+{% endfor%}
+
+
         {% else %}
             <p>您尚未登入喔~<a href="/accounts/login/">登入</a></p>
         {% endif %}

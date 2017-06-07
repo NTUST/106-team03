@@ -1,21 +1,46 @@
 {% include 'index/header.html' %}
+{% load staticfiles %}
 
-追蹤:{{ user.target.count }}
-粉絲:{{ user.follower.count}}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">個人資料</h3>
+  </div>
+  <div class="panel-body">
+  <h3>{{user.username}}</h3>
+  <div class="col-md-12">
+  <table class="table" style="width: 300px;text-align: center;">
+  	<tr>
+  		<td><h4>粉絲</h4></td>
+  		<td><h4>追蹤</h4></td>
+  	</tr>
+	<tr>
+		<td><h3><span class="label label-info">{{ user.follower.count}}</span></h3></td>
+		<td><h3><span class="label label-warning">{{ user.target.count}}</span></h3></td>
+	</tr>
+  </table>
+  </div>
+  <br>
+  	{% if user.email %}<h5>電子郵件: {{user.email }}</h5>{% endif %}
+    <h5>最後登入: {{ user.last_login }}</h5>
+	<h5>註冊時間: {{ user.date_joined }}</h5>
+  </div>
+</div>
 
-<h3>用戶名稱: {{ user.username }}</h3>
-{% if user.email %}<p>email: {{user.email }}</p>{% endif %}
-<p>最後登入: {{ user.last_login }}</p>
-<p>註冊時間: {{ user.date_joined }}</p>
-<h3>麥當勞報報</h3>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title">麥當勞報報</h3></div>
+  <div class="panel-body">
 
 {% for coupon in user_coupon %}
-<p>>>>>{{coupon.pub_date}}</p>
-{% if coupon.comment %}
-<p><b>心情：{{coupon.comment}}</b></p>	
-	{% endif %}
-	<img src="https://raw.githubusercontent.com/luuuy/ntustWeb/master/{{coupon.food}}.jpg" style="width: 300px">
-	
-{% endfor %}
 
+<div class="col-md-4 col-xs-12" style="margin-bottom: 30px">
+	<h4>>>{{coupon.pub_date}}</h4>
+	{% if coupon.comment %}<div class="well"><h4><b>心情：{{coupon.comment}}</b></h4></div>{% endif %}
+	<img src="/static/images/{{coupon.food}}.jpg" class="img-thumbnail food">
+	
+</div>
+{% endfor %}
+</div>
+</div>
 {% include 'index/footer.html' %}

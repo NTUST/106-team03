@@ -6,11 +6,12 @@ class coupon(models.Model):
 	
 	comment = models.CharField(max_length=200,blank=True)
 	FOOD_CHOICE = (
-        ('Fillet_O_Fish', '麥香魚'),
-        ('French_Fries', '中薯'),
-        ('McNugget','麥克雞塊'),
+        ('Spicy_chicken_filet','勁辣雞腿堡 買一送一'),
+        ('French_Fries','大薯 買一送一'),
+        ('McFlurry','冰炫風'),
+        ('Happy_sticker','歡樂貼'),
     )
-	FOOD_LIST = ['Fillet_O_Fish','French_Fries','McNugget']
+	FOOD_LIST = ['Spicy_chicken_filet','French_Fries','McFlurry','Happy_sticker']
 	food = models.CharField(max_length=50,choices=FOOD_CHOICE,blank=False)
 	# DATE
 	pub_date = models.DateTimeField('date published',blank=True,auto_now_add=True)

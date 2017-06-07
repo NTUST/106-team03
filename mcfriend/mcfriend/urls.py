@@ -17,6 +17,9 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from . import views
 from data import views as data_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index,name='index'),
@@ -31,4 +34,4 @@ urlpatterns = [
 
     url(r'^load_coupon/add/$',data_views.add,name='add'),
     url(r'^follow/(?P<user_id>[0-9]+)/(?P<action>[a-z]+)$',data_views.follow,name='follow'),
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_URL)

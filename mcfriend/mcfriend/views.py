@@ -1,6 +1,8 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth  # 別忘了import auth
+from django.contrib.auth.models import User
+
 
 def index(request):
     return render(request,'index/index.html')
