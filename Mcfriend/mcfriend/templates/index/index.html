@@ -1,0 +1,26 @@
+{% include 'index/header.html' %}
+
+
+        <div class="row"><div class="col-md-12 cover"></div></div>
+
+{% if request.user.is_authenticated %}
+
+{% for target in request.user.target.all%}
+<div class="panel panel-warning">
+  <div class="panel-heading"> <h4> <a href="/user/{{target.target.username}}"> {{target.target.username}}</a> </h4></div>
+  <div class="panel-body">
+    {% for coupon in target.target.coupon.all %}
+    <div class="col-md-3 col-xs-12"><a href="/user/{{target.target.username}}"><img src="/static/images/{{coupon.food}}.jpg" class="img-thumbnail food"></a></div>
+    {% empty %}
+    <p><strong>是個不擅長抽獎的朋友呢<strong></p>
+    {% endfor %}
+    </div>
+    </div>
+    {% empty %}
+    <h4>沒朋友QQ，趕快<a href="/list/">找麥友</a></h4>
+{% endfor%}
+        {% else %}
+        <p>您尚未登入喔~<a href="/accounts/login/">登入</a></p>
+        {% endif %}
+
+{% include 'index/footer.html' %}

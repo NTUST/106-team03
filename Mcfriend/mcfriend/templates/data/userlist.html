@@ -1,0 +1,39 @@
+{% include 'index/header.html' %}
+
+<div class="col-md-12">
+<table class="table">
+
+
+<tr>
+	<td>Username</td>
+	<td>Last login</td>
+	{% if request.user.is_authenticated %}<td>Follow</td>{% endif %}
+</tr>
+{% for user in users %}
+	<tr {% if user == request.user %} class="warning" {%endif%}>
+	<td><h4><a href="/user/{{user.username}}">{{user.username}}</a></h4></td>
+	<td><h4>{{user.last_login}}</h4></td>
+	{% if request.user.is_authenticated %}
+		<td><a href="/follow/{{user.id}}/{% if request.user in user.followers.all %}un{% endif %}follow">
+        	
+				{% if user == request.user %}
+
+        		{% elif request.user not in user.followers.all %}
+            		<button class="btn btn-success">Follow</button>
+        		
+        		{% else %}
+            		<button class="btn btn-default">Unfollow</button>
+        		{% endif %}
+        
+
+    	</a></td>
+    </tr>
+	{% endif %}
+{% endfor %}
+
+
+
+
+</table>
+</div>
+{% include 'index/footer.html' %}
